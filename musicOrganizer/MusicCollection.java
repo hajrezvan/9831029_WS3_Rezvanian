@@ -1,6 +1,7 @@
 package musicOrganizer;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * A class to hold details of audio files.
@@ -9,6 +10,7 @@ import java.util.ArrayList;
  * @version 2011.07.31
  */
 public class MusicCollection {
+    private String name;
     // An ArrayList for storing the file names of music files.
     private ArrayList<String> files;
     // A player for the music files.
@@ -17,8 +19,10 @@ public class MusicCollection {
     /**
      * Create a MusicCollection
      */
-    public MusicCollection() {
-
+    public MusicCollection(String name) {
+        this.name = name;
+        files = new ArrayList<>();
+        player = new MusicPlayer();
     }
 
     /**
@@ -27,7 +31,7 @@ public class MusicCollection {
      * @param filename The file to be added.
      */
     public void addFile(String filename) {
-
+        files.add(filename);
     }
 
     /**
@@ -36,8 +40,7 @@ public class MusicCollection {
      * @return The number of files in the collection.
      */
     public int getNumberOfFiles() {
-        //TODO impalement return value.
-        return 0;
+        return files.size();
     }
 
     /**
@@ -46,14 +49,17 @@ public class MusicCollection {
      * @param index The index of the file to be listed.
      */
     public void listFile(int index) {
-
+        System.out.println(files.get(index));
     }
 
     /**
      * Show a list of all the files in the collection.
      */
     public void listAllFiles() {
-
+        for (String s :
+                files) {
+            System.out.println(s);
+        }
     }
 
     /**
@@ -62,7 +68,12 @@ public class MusicCollection {
      * @param index The index of the file to be removed.
      */
     public void removeFile(int index) {
-
+        Iterator<String> iterator = files.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().equals(files.get(index))) {
+                iterator.remove();
+            }
+        }
     }
 
     /**
@@ -72,16 +83,17 @@ public class MusicCollection {
      * @param index The index of the file to be played.
      */
     public void startPlaying(int index) {
-
+        if (validIndex(index)) {
+            player.startPlaying(files.get(index));
+        }
     }
 
     /**
      * Stop the player.
      */
     public void stopPlaying() {
-
+        player.stop();
     }
-
 
     /**
      * Determine whether the given index is valid for the collection.
@@ -91,9 +103,6 @@ public class MusicCollection {
      * @return true if the index is valid, false otherwise.
      */
     private boolean validIndex(int index) {
-        //TODO:
-        // The return value.
-        // Set according to whether the index is valid or not.
-        return false;
+        return !files.get(index).isEmpty();
     }
 }
