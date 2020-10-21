@@ -18,7 +18,6 @@ public class MusicPlayer {
         isPlaying = false;
     }
 
-
     /**
      * Start playing the given audio file.
      * The method returns once the playing has been started.
@@ -34,6 +33,4 @@ public class MusicPlayer {
         System.out.println("player is stopped!");
         isPlaying = false;
     }
-
-
 }

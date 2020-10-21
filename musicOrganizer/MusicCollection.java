@@ -72,6 +72,7 @@ public class MusicCollection {
         while (iterator.hasNext()) {
             if (iterator.next().equals(files.get(index))) {
                 iterator.remove();
+                break;
             }
         }
     }

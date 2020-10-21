@@ -8,8 +8,15 @@ public class RunClass {
         musicCollections[2] = new MusicCollection("rock");
         musicCollections[3] = new MusicCollection("country");
         musicCollections[0].addFile("music 1");
+        musicCollections[0].addFile("music 2");
+        musicCollections[0].addFile("music 3");
 
-        System.out.println(musicCollections[0].getNumberOfFiles());
+        musicCollections[0].listAllFiles();
+        musicCollections[0].removeFile(0);
+
+        System.out.println("*********************");
+
+        musicCollections[0].listAllFiles();
 
     }
 }
